@@ -30,8 +30,7 @@ app.post('/', async (req,res) => {
         result.visibility = Math.round(result.visibility/1000);
         result.wind.speed = Math.round(result.wind.speed * 3.6);
         result.main.temp = Math.round(result.main.temp);
-        result.weather[0].icon = `https://openweathermap.org/img/w/${result.weather[0].icon}.png`
-        console.log(result);
+        result.weather[0].icon = `https://openweathermap.org/img/w/${result.weather[0].icon}.png`;
         res.render("index.ejs", { data: result });
 
       } catch (error) {
