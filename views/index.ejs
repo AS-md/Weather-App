@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="\style.css">
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="heading">
+        <img src="\images\weather.png" alt="">
+        <p>Weather App</p>
+    </div>
+    <div class="container">
+        <div class="search-box">
+            <img src="\images\location.png" alt="">
+            <form action="/" method="post">
+                <input type="text" placeholder="Enter your location" name="city" autocomplete="off">
+                <button type="submit" class="fa-solid fa-magnifying-glass"></button>
+            </form>
+        </div>
+       <% if (locals.error){ %>
+        <div class="not-found fadeIn">
+            <img src="\images\404.png">
+            <p>Oops! Invalid location :/</p>
+        </div>
+        <% } %>
+        <% if (locals.data){ %>
+        <div class="weather-box fadeIn flex-container">
+            <div class="flex-left">
+                <img src=<%= data.weather[0].icon %> >
+                <p class="description"><%= data.weather[0].description %></p>
+            </div>
+            <div class="flex-right">
+                <p class="location"><%= data.name %></p>
+                <p class="temperature"><%= data.main.temp %>°C</p>
+            </div>
+        </div>
+
+        <div class="weather-details fadeIn">
+            <div class="humidity lbox">
+                <img src="\images\humidity.png" >
+                <div class="text">
+                    <span> <%= data.main.humidity %>% </span>
+                    <p>Humidity</p>
+                </div>
+            </div>
+            <div class="wind">
+                <img src="\images\wind.png" >
+                <div class="text">
+                    <span> <%= data.wind.speed %> Km/h </span>
+                    <p>Wind Speed</p>
+                </div>
+            </div>
+        </div>
+        <div class="weather-details fadeIn">
+            <div class="pressure  lbox">
+                <img src="\images\pressure.png" >
+                <div class="text">
+                    <span> <%= data.main.pressure %> hPa</span>
+                    <p>Air Pressure</p>
+                </div>
+            </div>
+            <div class="visibility">
+                <img src="\images\visibility.png" >
+                <div class="text">
+                    <span> <%= data.visibility %> Km </span>
+                    <p>Visibility</p>
+                </div>
+            </div>
+        </div>
+        <div class="weather-details fadeIn">
+            <div class="sunrise  lbox">
+                <img src="\images\sunrise.png" >
+                <div class="text">
+                    <span> <%= data.sys.sunrise %></span>
+                    <p>Sunrise</p>
+                </div>
+            </div>
+            <div class="sunset">
+                <img src="\images\sunset.png" >
+                <div class="text">
+                    <span> <%= data.sys.sunset %></span>
+                    <p>Sunset</p>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+
+    <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+    <footer>
+        <h6>&copy AS-MD</h6>
+    </footer>
+</body>
+
+</html>
